@@ -4,7 +4,7 @@ Scripts para medir el extractor-service con los perfiles de la cátedra.
 Todo corre en Docker: no hace falta instalar k6 ni Vegeta.
 
 ```
-tests/stress/
+stress/
 ├── pdfs/      los 4 PDFs oficiales de la cátedra (no se versionan)
 ├── k6/        prueba spike, modelo cerrado
 ├── vegeta/    prueba de carga fija, modelo abierto
@@ -14,7 +14,7 @@ tests/stress/
 ## PDFs de prueba
 
 Son material de terceros, así que no están en el repo. Antes de correr las pruebas hay
-que copiar en `tests/stress/pdfs/` los 4 PDFs oficiales que provee la cátedra, con estos
+que copiar en `stress/pdfs/` los 4 PDFs oficiales que provee la cátedra, con estos
 nombres exactos (los usan los scripts):
 
 - `2020-Scrum-Guide-Spanish-Latin-South-American.pdf`

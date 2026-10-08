@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.vscode/
+
+# Resultados de las pruebas de carga (se regeneran en cada corrida)
+stress/results/*
+!stress/results/.gitkeep
+
+# PDFs oficiales de la cátedra: material de terceros, no se versiona
+stress/pdfs/*.pdf

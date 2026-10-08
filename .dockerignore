@@ -1,4 +1,9 @@
+# La imagen sólo necesita el código del servicio y sus dependencias.
+.git
 .venv
 __pycache__
 .pytest_cache
 tests
+stress
+docs
+nginx

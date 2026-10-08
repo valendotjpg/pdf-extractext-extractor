@@ -32,10 +32,10 @@ Decisiones de diseño (cada una justificada con mediciones en la sección 4):
 | Docker | Docker Desktop 29.8.2 (VM con 8 CPUs y 7,6 GB de RAM), Compose 5.5.1 |
 | Límites por réplica | 1.0 CPU, 1 GB RAM |
 | Balanceador | nginx 1.27, 1.0 CPU, 512 MB RAM |
-| Resto del sistema | api (documents-service) 0,5 CPU / 512 MB y MongoDB 0,5 CPU / 1 GB; ociosos durante las pruebas |
+| Resto del sistema | Al medir, el extractor todavía estaba en el repo de pdf-extractext y el mismo compose levantaba la api (0,5 CPU / 512 MB) y MongoDB (0,5 CPU / 1 GB), ociosos durante las pruebas |
 | Generadores de carga | k6 y Vegeta sin límites: no son el sistema medido, y limitarlos falsearía las mediciones |
 | Réplicas | 5 |
-| PDFs | `tests/stress/pdfs` (set oficial de la cátedra) |
+| PDFs | `stress/pdfs` (set oficial de la cátedra) |
 
 Los límites suman 6 CPUs (5 réplicas + nginx) sobre 4 núcleos físicos, y los
 generadores de carga corren en el mismo host: bajo carga máxima todos compiten por
@@ -156,7 +156,7 @@ los 4 oficiales), así que sirve para comparar versiones entre sí, no contra el
   cerrado, sin timeout de 30 s) pasa a tener 15 % de errores. Con 20 s, k6 queda igual que
   la base y Vegeta mejora.
 - **Conclusión:** se mantiene, con 20 s por defecto. El throughput total casi no cambia:
-  el límite sigue siendo la extracción con pypdf, que es lo que ataca #32.
+  el límite sigue siendo la extracción con pypdf, que es lo que ataca AugustoZz/pdf-extractext#32.
 
 ### Experimento 2: librería de extracción (pypdf → PyMuPDF con salida Markdown)
 
@@ -217,7 +217,7 @@ Set oficial: Scrum Guide (0,3 MB, 16 págs.), Kanban (8,5 MB, 90 págs.), Filoso
   entre `**`. Tarda menos que el texto plano y entra en el presupuesto del profesor.
   pymupdf4llm deja de ser dependencia, y con él ~64 MB de RAM por proceso.
 
-**Bajo carga**, misma infraestructura, cambiando sólo `extractor/`:
+**Bajo carga**, misma infraestructura, cambiando sólo el código del servicio:
 
 | Versión | Vegeta éxito | Vegeta req/s efectivas | Vegeta timeouts | k6 req/s | k6 error | k6 p50 | k6 p95 |
 |---|---|---|---|---|---|---|---|
@@ -227,7 +227,7 @@ Set oficial: Scrum Guide (0,3 MB, 16 págs.), Kanban (8,5 MB, 90 págs.), Filoso
 | Backpressure + pymupdf4llm | 2,73 % | 0,77 | 24 | 3,81 | 54,62 % | 19,99 s | 21,99 s |
 | **Backpressure + Markdown propio** | **15,20 %** | **4,36** | 18 | **15,70** | **3,66 %** | **4,84 s** | **10,12 s** |
 
-- **Techo de la infraestructura (#25):** con el set oficial, nginx sostiene los 50 req/s de
+- **Techo de la infraestructura (AugustoZz/pdf-extractext#25):** con el set oficial, nginx sostiene los 50 req/s de
   Vegeta sin errores y 133 req/s en el spike. El límite está en el extractor.
 - Con pypdf o pymupdf4llm el servicio está tan saturado que casi todo termina en 503: el
   backpressure protege a las réplicas pero no puede crear capacidad.
