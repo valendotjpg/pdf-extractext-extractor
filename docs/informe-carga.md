@@ -35,7 +35,7 @@ Decisiones de diseño (cada una justificada con mediciones en la sección 4):
 | Resto del sistema | Al medir, el extractor todavía estaba en el repo de pdf-extractext y el mismo compose levantaba la api (0,5 CPU / 512 MB) y MongoDB (0,5 CPU / 1 GB), ociosos durante las pruebas |
 | Generadores de carga | k6 y Vegeta sin límites: no son el sistema medido, y limitarlos falsearía las mediciones |
 | Réplicas | 5 |
-| PDFs | `stress/pdfs` (set oficial de la cátedra) |
+| PDFs | `tests/stress/pdfs` (set oficial de la cátedra) |
 
 Los límites suman 6 CPUs (5 réplicas + nginx) sobre 4 núcleos físicos, y los
 generadores de carga corren en el mismo host: bajo carga máxima todos compiten por

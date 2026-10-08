@@ -62,15 +62,15 @@ services:
     ports:
       - "5665:5665"
     volumes:
-      - ./stress:/stress
+      - ./tests/stress:/stress
     depends_on:
       - extractor-lb
 
   vegeta:
-    build: ./stress/vegeta
+    build: ./tests/stress/vegeta
     profiles: ["stress"]
     entrypoint: ["sh", "/stress/vegeta/run.sh"]
     volumes:
-      - ./stress:/stress
+      - ./tests/stress:/stress
     depends_on:
       - extractor-lb

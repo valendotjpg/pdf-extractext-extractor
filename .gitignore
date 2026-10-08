@@ -6,8 +6,8 @@ __pycache__/
 .vscode/
 
 # Resultados de las pruebas de carga (se regeneran en cada corrida)
-stress/results/*
-!stress/results/.gitkeep
+tests/stress/results/*
+!tests/stress/results/.gitkeep
 
 # PDFs oficiales de la cátedra: material de terceros, no se versiona
-stress/pdfs/*.pdf
+tests/stress/pdfs/*.pdf
