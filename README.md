@@ -84,6 +84,8 @@ los nuestros, alcanza con apuntarlos a `http://localhost:8080/extract`.
 
 - Cómo correrlas, perfiles y opciones: [`tests/stress/README.md`](tests/stress/README.md)
 - Arquitectura, mediciones y proceso de optimización: [`docs/informe-carga.md`](docs/informe-carga.md)
+- Corrida final con sus reportes: [`docs/evidencia/`](docs/evidencia/README.md)
+- Checklist punto por punto contra la consigna: [`docs/checklist-consigna.md`](docs/checklist-consigna.md)
 
 ## Principios aplicados
 
