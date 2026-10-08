@@ -67,6 +67,10 @@ Vegeta, pero en este hardware no alcanza al profesor (ver sección 5). En k6 los
 resultados varían entre corridas: una repetición dio 11,12 req/s con 7,50 % de error
 (Experimento 4).
 
+La corrida final, con los reportes de k6 y Vegeta, fecha, commit y configuración, está en
+[`docs/evidencia/`](evidencia/README.md): dos corridas seguidas dieron 15,69 y 11,27 req/s en
+k6, ambas con 0,00 % de error, y 14,3 % y 13,9 % de éxito en Vegeta.
+
 ## 4. Proceso de investigación
 
 Un experimento por cambio, medido con los mismos scripts.
